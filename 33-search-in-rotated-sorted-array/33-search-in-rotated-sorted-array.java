@@ -1,7 +1,7 @@
 class Solution {
     public int search(int[] nums, int target) {
         int lo=0,hi=nums.length-1;
-        if(nums.length > 2){
+        // if(nums.length > 2){
         while(hi >= lo) {
             int mid = (lo + hi) / 2;
             if(nums[mid] == target) {
@@ -21,16 +21,16 @@ class Solution {
                 }
             }
         }
-        }
-        if(nums.length == 2) {
-            if(nums[0] == target) return 0;
-            else if(nums[1] == target) return 1;
-            else return -1;
-        }
-        if(nums.length == 1){
-            if(nums[0] == target) return 0;
-            else return -1;
-        }
+        
+        // if(nums.length == 2) {
+        //     if(nums[0] == target) return 0;
+        //     else if(nums[1] == target) return 1;
+        //     else return -1;
+        // }
+        // if(nums.length == 1){
+        //     if(nums[0] == target) return 0;
+        //     else return -1;
+        // }
         return -1;
     }
 }
