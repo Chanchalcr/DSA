@@ -10,20 +10,40 @@
  */
 class Solution {
     public ListNode deleteDuplicates(ListNode head) {
-        if(head == null || head.next == null) {
+        
+        //in this approach I have used a hashSet so this method will work even if the list is not               sorted
+        
+//         if(head == null || head.next == null) {
+//             return head;
+//         }
+        
+//         HashSet<Integer> set = new HashSet<>();
+//         set.add(head.val);
+//         ListNode temp = head;
+//         while(temp.next != null) {
+//             if(set.add(temp.next.val)) {
+//                 temp = temp.next;
+//             }else {
+//                 temp.next = temp.next.next;
+//             }
+//         }
+//         return head;
+        
+        if(head == null) {
             return head;
         }
-        
-        HashSet<Integer> set = new HashSet<>();
-        set.add(head.val);
-        ListNode temp = head;
-        while(temp.next != null) {
-            if(set.add(temp.next.val)) {
-                temp = temp.next;
-            }else {
-                temp.next = temp.next.next;
+        ListNode one = head;
+        ListNode two = head.next;
+        while(two != null) {
+            if(two.val == one.val) {
+                two = two.next;
+            }else{
+                one.next = two;
+                one = two;
+                two = two.next;
             }
         }
+        one.next = null;
         return head;
     }
 }
