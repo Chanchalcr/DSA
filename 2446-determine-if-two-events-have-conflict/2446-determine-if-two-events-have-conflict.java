@@ -6,11 +6,12 @@ class Solution {
         range1[1] = toMinute(event1[1]);
         range2[0] = toMinute(event2[0]);
         range2[1] = toMinute(event2[1]);
-        if(range1[0] <= range2[0] && range2[0] <= range1[1]) return true;
-        if(range1[0] <= range2[1] && range2[1] <= range1[1]) return true;
-        if(range2[0] <= range1[0] && range1[0] <= range2[1]) return true;
-        if(range2[0] <= range1[1] && range1[1] <= range2[1]) return true;
-        return false;
+        // if(range1[0] <= range2[0] && range2[0] <= range1[1]) return true;
+        // if(range1[0] <= range2[1] && range2[1] <= range1[1]) return true;
+        // if(range2[0] <= range1[0] && range1[0] <= range2[1]) return true;
+        // if(range2[0] <= range1[1] && range1[1] <= range2[1]) return true;
+        // return false;
+        return range2[1] >= range1[0] && range1[1] >= range2[0];
     }
     public int toMinute(String S) {
         char[] event = S.toCharArray();
