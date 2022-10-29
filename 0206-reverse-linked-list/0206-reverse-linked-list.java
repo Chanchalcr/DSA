@@ -14,11 +14,8 @@ class Solution {
          return recursion(null,head,head.next);
     }
     public ListNode recursion(ListNode i, ListNode j, ListNode k) {
-        if(k == null) {
-            j.next = i;
-            return j;
-        }
         j.next = i;
+        if(k == null) return j;
         return recursion(j,k,k.next);
     }
 }
