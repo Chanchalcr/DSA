@@ -1,33 +1,27 @@
 public class Solution {
     public List<Integer> diffWaysToCompute(String input) {
-        List<Integer> ret = new LinkedList<Integer>();
-        for (int i=0; i<input.length(); i++) {
-            if (input.charAt(i) == '-' ||
-                input.charAt(i) == '*' ||
-                input.charAt(i) == '+' ) {
-                String part1 = input.substring(0, i);
-                String part2 = input.substring(i+1);
-                List<Integer> part1Ret = diffWaysToCompute(part1);
-                List<Integer> part2Ret = diffWaysToCompute(part2);
-                for (Integer p1 :   part1Ret) {
-                    for (Integer p2 :   part2Ret) {
-                        int c = 0;
-                        switch (input.charAt(i)) {
-                            case '+': c = p1+p2;
-                                break;
-                            case '-': c = p1-p2;
-                                break;
-                            case '*': c = p1*p2;
-                                break;
+        List<Integer> res = new ArrayList<Integer>();
+        for (int i = 0; i < input.length(); i++) {
+            char c = input.charAt(i);
+            if (c == '-' || c == '+' || c == '*') {
+                String a = input.substring(0, i);
+                String b = input.substring(i + 1);
+                List<Integer> al = diffWaysToCompute(a);
+                List<Integer> bl = diffWaysToCompute(b);
+                for (int x : al) {
+                    for (int y : bl) {
+                        if (c == '-') {
+                            res.add(x - y);
+                        } else if (c == '+') {
+                            res.add(x + y);
+                        } else if (c == '*') {
+                            res.add(x * y);
                         }
-                        ret.add(c);
                     }
                 }
             }
         }
-        if (ret.size() == 0) {
-            ret.add(Integer.valueOf(input));
-        }
-        return ret;
+        if (res.size() == 0) res.add(Integer.valueOf(input));
+        return res;
     }
 }
