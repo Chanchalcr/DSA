@@ -31,18 +31,37 @@ class GFG{
 class Solution{
     static List<Integer> leftSmaller(int n, int a[])
     {
-        List<Integer> list = new ArrayList<>();
-        for(int i =0; i< n; i++) {
-            int flag = 0;
-            for (int j =i-1; j>=0; j--) {
-                if(a[j] < a[i]) {
-                    list.add(a[j]);
-                    flag = 1;
-                    break;
-                }
-            }
-            if(flag == 0) list.add(-1);
+    //     List<Integer> list = new ArrayList<>();
+    //     for(int i =0; i< n; i++) {
+    //         int flag = 0;
+    //         for (int j =i-1; j>=0; j--) {
+    //             if(a[j] < a[i]) {
+    //                 list.add(a[j]);
+    //                 flag = 1;
+    //                 break;
+    //             }
+    //         }
+    //         if(flag == 0) list.add(-1);
+    //     }
+    //     return list;
+    // }
+    
+    //using better approach stack
+    Stack<Integer> st = new Stack<>();
+    List<Integer> list = new ArrayList<>();
+    for(int i =0; i<n; i++) {
+        
+        while(!st.isEmpty() && st.peek() >= a[i]) {
+            st.pop();
+        } 
+        if(!st.isEmpty()) {
+            list.add(st.peek());
+            st.add(a[i]);
+        } else {
+            list.add(-1);
+            st.add(a[i]);
         }
-        return list;
+    }
+    return list;
     }
 }
