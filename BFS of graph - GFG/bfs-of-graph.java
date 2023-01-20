@@ -40,9 +40,11 @@ class Solution {
         int[] visited = new int[V];
         visited[0] = 1; // this is the starting node
         q.offer(0);
-        ArrayList<Integer> result = new ArrayList<>();
+        return util(adj, q, visited, new ArrayList<>());
+    }
+    public ArrayList<Integer> util(ArrayList<ArrayList<Integer>> adj, Queue<Integer> q, int[] visited, ArrayList<Integer> result) {
         
-        while(!q.isEmpty()) {
+        if(!q.isEmpty()) {
             
             int temp = q.poll();
             result.add(temp);
@@ -53,7 +55,9 @@ class Solution {
                     q.offer(i);
                 }
             }
+            util(adj, q, visited, result);
         }
-        return result;
+        
+        return result; //base condition
     }
 }
